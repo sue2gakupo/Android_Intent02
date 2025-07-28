@@ -34,18 +34,18 @@ public class ActivityTemperatureF extends AppCompatActivity {
 //            return insets;
 //        });
 
-        textview_temp_f= findViewById(R.id.textview_temp_f);
+        textview_temp_f = findViewById(R.id.textview_temp_f);
         button_close = findViewById(R.id.button_close);
 
         Intent intent_getFromMainActivity = ActivityTemperatureF.this.getIntent();
-        Bundle bundle_getTempC = intent_getFromMainActivity.getExtras();
+        Bundle bundle_getTempC = intent_getFromMainActivity.getExtras(); //取出bundle_TempC
 
-        if (bundle_getTempC != null) {
+        if (bundle_getTempC != null) {   //檢查是不是null值
             String stringTempC = bundle_getTempC.getString("TEMP_C_01");
-            c = Double.parseDouble(stringTempC);
-            f = (c * 9 / 5) + 32;
+            c = Double.parseDouble(stringTempC);  //parseDouble轉換成雙精度浮點數，因為字串不行計算
+            f = ((9.0 * c) / 5) + 32;  //華氏溫度 = (攝氏溫度 * 9/5) + 32
             textview_temp_f.setText("轉換後的華氏溫度為: " + f.toString());
-        }else {
+        } else {
             textview_temp_f.setText("發生錯誤，Bundle物件為Null!!");
         }
 
@@ -55,8 +55,6 @@ public class ActivityTemperatureF extends AppCompatActivity {
                 finish();
             }
         });
-
-
 
 
     }
